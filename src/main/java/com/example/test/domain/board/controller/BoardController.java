@@ -72,4 +72,12 @@ public class BoardController {
         return ResponseEntity.ok(allPostDto);
     }
 
+    // 게시글 단일 조회(details page) - by id
+    @GetMapping("/{postNo}")
+    public ResponseEntity<PostResponseDTO> getPost(@PathVariable final Long postNo) {
+        log.info(COMMON_LOG + "find post by id - {} ", postNo);
+
+        PostResponseDTO postDto = boardService.getPost(postNo);
+        return ResponseEntity.ok(postDto);
+    }
 }

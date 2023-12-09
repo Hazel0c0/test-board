@@ -50,10 +50,16 @@ public class BoardService {
 
     // 수정
     public PostResponseDTO update(Long postNo, UpdateRequestDTO updatedPostDto) {
-        Post foundPost = findById(postNo);
+        Post foundPost = returnPost(postNo);
         setPost(foundPost,updatedPostDto);
 
         return PostResponseDTO.from(foundPost);
+    }
+    private void setPost(Post p, UpdateRequestDTO dto){
+        p.setPostSj(dto.getPostSj());
+        p.setPostCn(dto.getPostCn());
+
+        log.info(COMMON_LOG + "updated post dto - {}", p);
     }
 
     // 삭제
@@ -74,19 +80,12 @@ public class BoardService {
             .collect(Collectors.toList());
     }
 
-
-
-
-// -----------------------------------------------------------
-
-    private void setPost(Post p, UpdateRequestDTO dto){
-        p.setPostSj(dto.getPostSj());
-        p.setPostCn(dto.getPostCn());
-
-        log.info(COMMON_LOG + "updated post dto - {}", p);
+    // 단일 조회
+    public PostResponseDTO getPost(Long postId) {
+        return PostResponseDTO.from(returnPost(postId));
     }
 
-    private Post findById(Long postNo) {
+    private Post returnPost(Long postNo) {
         return postRepository.findById(postNo)
             .orElseThrow(NoSuchElementException::new);
     }
