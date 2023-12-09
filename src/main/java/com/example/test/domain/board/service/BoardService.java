@@ -11,6 +11,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.NoSuchElementException;
@@ -63,5 +64,14 @@ public class BoardService {
     private Post findById(Long postNo) {
         return postRepository.findById(postNo)
             .orElseThrow(NoSuchElementException::new);
+    }
+
+    public boolean delete(Long postId) {
+        try {
+            postRepository.deleteById(postId);
+            return true;
+        } catch (EmptyResultDataAccessException e) {
+            return false;
+        }
     }
 }

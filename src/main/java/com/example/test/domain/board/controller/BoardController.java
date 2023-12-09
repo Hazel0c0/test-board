@@ -50,4 +50,10 @@ public class BoardController {
     }
 
 
+    @DeleteMapping("/{postNo}")
+    public ResponseEntity<Boolean> deletePost(@PathVariable final Long postNo) {
+        boolean isDeleted = boardService.delete(postNo);
+        return ResponseEntity.ok(isDeleted);
+    }
+
 }
