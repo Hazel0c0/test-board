@@ -23,11 +23,12 @@ public class BoardController {
 
     /**
      * 게시글 작성
+     *
      * @param postRequestDTO : 게시판 코드, 제목, 내용, 작성자
      */
     @PostMapping
     public ResponseEntity<PostResponseDTO> createPost(@Validated @RequestBody final createRequestDTO postRequestDTO) {
-        log.debug(COMMON_LOG+"create post dto - {}", postRequestDTO);
+        log.info(COMMON_LOG + "create post dto - {}", postRequestDTO);
 
         PostResponseDTO postResponseDTO = boardService.insertPost(postRequestDTO);
         return ResponseEntity.ok(postResponseDTO);
@@ -35,14 +36,15 @@ public class BoardController {
 
     /**
      * 게시글 수정
-     * @param postNo : 게시글 번호
+     *
+     * @param postNo         : 게시글 번호
      * @param updatedPostDto : 제목, 내용
      */
     @PutMapping("/{postNo}")
     public ResponseEntity<PostResponseDTO> updatePost(
         @PathVariable final Long postNo,
         @Validated @RequestBody final UpdateRequestDTO updatedPostDto) {
-        log.debug(COMMON_LOG+"update post number - {} / dto - {}", postNo,updatedPostDto);
+        log.info(COMMON_LOG + "update post number - {} / dto - {}", postNo, updatedPostDto);
 
         PostResponseDTO updateResponseDTO = boardService.update(postNo, updatedPostDto);
         return ResponseEntity.ok(updateResponseDTO);
@@ -50,20 +52,22 @@ public class BoardController {
 
     /**
      * 게시글 삭제
+     *
      * @param postNo 게시글 번호
      * @return 삭제 유무
      */
     @DeleteMapping("/{postNo}")
     public ResponseEntity<Boolean> deletePost(@PathVariable final Long postNo) {
+        log.info(COMMON_LOG + "delete post number - {}", postNo);
+
         boolean isDeleted = boardService.delete(postNo);
         return ResponseEntity.ok(isDeleted);
     }
 
-    /**
-     * 게시판 전체글 조회
-     */
+    // 게시판 전체글 조회
     @GetMapping
     public ResponseEntity<List<PostResponseDTO>> getPostList() {
+        log.debug(COMMON_LOG + "post find ALL");
         List<PostResponseDTO> allPostDto = boardService.getListAll();
         return ResponseEntity.ok(allPostDto);
     }

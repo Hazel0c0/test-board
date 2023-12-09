@@ -56,6 +56,29 @@ public class BoardService {
         return PostResponseDTO.from(foundPost);
     }
 
+    // 삭제
+    public boolean delete(Long postId) {
+        try {
+            postRepository.deleteById(postId);
+            return true;
+        } catch (EmptyResultDataAccessException e) {
+            return false;
+        }
+    }
+
+    // 전체 조회
+    public List<PostResponseDTO> getListAll() {
+        List<Post> posts = postRepository.findAll();
+        return posts.stream()
+            .map(PostResponseDTO::from)
+            .collect(Collectors.toList());
+    }
+
+
+
+
+// -----------------------------------------------------------
+
     private void setPost(Post p, UpdateRequestDTO dto){
         p.setPostSj(dto.getPostSj());
         p.setPostCn(dto.getPostCn());
@@ -66,21 +89,5 @@ public class BoardService {
     private Post findById(Long postNo) {
         return postRepository.findById(postNo)
             .orElseThrow(NoSuchElementException::new);
-    }
-
-    public boolean delete(Long postId) {
-        try {
-            postRepository.deleteById(postId);
-            return true;
-        } catch (EmptyResultDataAccessException e) {
-            return false;
-        }
-    }
-
-    public List<PostResponseDTO> getListAll() {
-        List<Post> posts = postRepository.findAll();
-        return posts.stream()
-            .map(PostResponseDTO::from)
-            .collect(Collectors.toList());
     }
 }
