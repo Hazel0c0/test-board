@@ -56,7 +56,6 @@ public class BoardService {
     private void setPost(Post p, UpdateRequestDTO dto){
         p.setPostSj(dto.getPostSj());
         p.setPostCn(dto.getPostCn());
-        p.setRegstrId(dto.getRegstrId());
 
         postRepository.flush();
         log.debug(p.getRegDt()+"-- 수정된 시간");

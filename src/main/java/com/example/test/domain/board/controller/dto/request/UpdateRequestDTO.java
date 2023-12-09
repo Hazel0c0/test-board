@@ -12,6 +12,4 @@ public class UpdateRequestDTO {
     private String postSj;
 
     private String postCn;
-
-    private String regstrId;
 }
