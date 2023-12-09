@@ -1,16 +1,13 @@
 package com.example.test.domain.board.controller.dto.request;
 
-import com.example.test.domain.board.model.BoardDef;
 import lombok.*;
-
-import java.time.LocalDateTime;
 
 @ToString
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
-public class PostRequestDTO {
+public class createRequestDTO {
     private String boardCd;
 
     private String postSj;

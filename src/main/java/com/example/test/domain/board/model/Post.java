@@ -1,5 +1,6 @@
 package com.example.test.domain.board.model;
 
+import com.example.test.domain.board.controller.dto.request.UpdateRequestDTO;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
@@ -26,16 +27,20 @@ public class Post {
     @JoinColumn(name = "BOARD_CD")
     private BoardDef boardCd;
 
+    @Setter
     @Column(name = "POST_SJ")
     private String postSj; // 제목
 
+    @Setter
     @Column(name = "POST_CN", length = 1000)
     private String postCn; // 내용
 
+    @Setter
     @Column(name = "REGSTR_ID")
     private String regstrId; // 작성자
 
     @CreatedDate
     @Column(name = "REG_DT", updatable = true)
     private LocalDateTime regDt; // 작성일시
+
 }

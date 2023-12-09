@@ -1,16 +1,14 @@
 package com.example.test.domain.board.controller;
 
-import com.example.test.domain.board.controller.dto.request.PostRequestDTO;
+import com.example.test.domain.board.controller.dto.request.createRequestDTO;
+import com.example.test.domain.board.controller.dto.request.UpdateRequestDTO;
 import com.example.test.domain.board.controller.dto.response.PostResponseDTO;
 import com.example.test.domain.board.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -23,15 +21,26 @@ public class BoardController {
 
     /**
      * 게시글 작성
-     * @param postRequestDTO :
+     * @param postRequestDTO : 게시판 코드, 제목, 내용, 작성자
      * @return message
      */
     @PostMapping
-    public ResponseEntity<String> createPost(@Validated @RequestBody final PostRequestDTO postRequestDTO) {
+    public ResponseEntity<PostResponseDTO> createPost(@Validated @RequestBody final createRequestDTO postRequestDTO) {
         log.debug(COMMON_LOG+"create post dto - {}", postRequestDTO);
 
-        String successMsg = boardService.insertPost(postRequestDTO);
-
-        return ResponseEntity.ok(successMsg);
+        PostResponseDTO postResponseDTO = boardService.insertPost(postRequestDTO);
+        return ResponseEntity.ok(postResponseDTO);
     }
+
+    @PutMapping("/{postNo}")
+    public ResponseEntity<PostResponseDTO> updatePost(
+        @PathVariable final Long postNo,
+        @Validated @RequestBody final UpdateRequestDTO updatedPostDto) {
+        log.debug(COMMON_LOG+"update post number - {} / dto - {}", postNo,updatedPostDto);
+
+        PostResponseDTO updateResponseDTO = boardService.update(postNo, updatedPostDto);
+        return ResponseEntity.ok(updateResponseDTO);
+    }
+
+
 }
