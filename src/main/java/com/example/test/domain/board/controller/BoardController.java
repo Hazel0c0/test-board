@@ -24,8 +24,6 @@ public class BoardController {
     /**
      * 게시글 작성
      * @param postRequestDTO : 게시판 코드, 제목, 내용, 작성자
-     * @return message
-     * @return postResponseDTO
      */
     @PostMapping
     public ResponseEntity<PostResponseDTO> createPost(@Validated @RequestBody final createRequestDTO postRequestDTO) {
@@ -39,7 +37,6 @@ public class BoardController {
      * 게시글 수정
      * @param postNo : 게시글 번호
      * @param updatedPostDto : 제목, 내용
-     * @return postResponseDTO
      */
     @PutMapping("/{postNo}")
     public ResponseEntity<PostResponseDTO> updatePost(
@@ -64,7 +61,6 @@ public class BoardController {
 
     /**
      * 게시판 전체글 조회
-     * @return
      */
     @GetMapping
     public ResponseEntity<List<PostResponseDTO>> getPostList() {
