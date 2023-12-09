@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("api/board")
@@ -49,11 +51,25 @@ public class BoardController {
         return ResponseEntity.ok(updateResponseDTO);
     }
 
-
+    /**
+     * 게시글 삭제
+     * @param postNo 게시글 번호
+     * @return 삭제 유무
+     */
     @DeleteMapping("/{postNo}")
     public ResponseEntity<Boolean> deletePost(@PathVariable final Long postNo) {
         boolean isDeleted = boardService.delete(postNo);
         return ResponseEntity.ok(isDeleted);
+    }
+
+    /**
+     * 게시판 전체글 조회
+     * @return
+     */
+    @GetMapping
+    public ResponseEntity<List<PostResponseDTO>> getPostList() {
+        List<PostResponseDTO> allPostDto = boardService.getListAll();
+        return ResponseEntity.ok(allPostDto);
     }
 
 }

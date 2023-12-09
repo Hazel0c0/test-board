@@ -14,7 +14,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -73,5 +75,12 @@ public class BoardService {
         } catch (EmptyResultDataAccessException e) {
             return false;
         }
+    }
+
+    public List<PostResponseDTO> getListAll() {
+        List<Post> posts = postRepository.findAll();
+        return posts.stream()
+            .map(PostResponseDTO::from)
+            .collect(Collectors.toList());
     }
 }
