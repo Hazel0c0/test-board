@@ -57,9 +57,6 @@ public class BoardService {
         p.setPostSj(dto.getPostSj());
         p.setPostCn(dto.getPostCn());
 
-        postRepository.flush();
-        log.debug(p.getRegDt()+"-- 수정된 시간");
-
         log.info(COMMON_LOG + "updated post dto - {}", p);
     }
 
