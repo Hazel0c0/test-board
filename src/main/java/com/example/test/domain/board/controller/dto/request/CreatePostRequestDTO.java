@@ -2,6 +2,8 @@ package com.example.test.domain.board.controller.dto.request;
 
 import lombok.*;
 
+import java.util.List;
+
 @ToString
 @Getter
 @NoArgsConstructor
@@ -15,4 +17,6 @@ public class CreatePostRequestDTO {
     private String postCn;
 
     private String regstrId;
+
+    private List<String> tagName;
 }

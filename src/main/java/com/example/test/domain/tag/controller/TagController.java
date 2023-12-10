@@ -1,7 +1,5 @@
 package com.example.test.domain.tag.controller;
 
-import com.example.test.domain.tag.controller.dto.response.PostTagResponseDTO;
-import com.example.test.domain.tag.model.Tag;
 import com.example.test.domain.tag.service.TagService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

@@ -1,16 +1,13 @@
 package com.example.test.domain.tag.controller.dto.response;
 
-import com.example.test.domain.board.model.BoardDef;
-import com.example.test.domain.board.model.Post;
-import com.example.test.domain.tag.model.PostTag;
-import com.example.test.domain.tag.model.Tag;
-import jakarta.persistence.*;
+import com.example.test.domain.board.model.PostTag;
 import lombok.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @ToString
+@Getter
 public class PostTagResponseDTO {
     private Long boardTagId; // 게시물 태그ID
 
@@ -20,12 +17,13 @@ public class PostTagResponseDTO {
 
     private Long tagNo; // 태그 ID
 
-    public static PostTagResponseDTO from(PostTag pTag){
+    public static PostTagResponseDTO from(PostTag pTag) {
         return PostTagResponseDTO.builder()
-            .postNo(pTag.getPostNo().getPostNo())
-            .boardCd(pTag.getBoardCd().getBoardCd())
-            .tagNo(pTag.getTagNo().getTagNo())
-            .build();
+                .boardTagId(pTag.getBoardTagId())
+                .postNo(pTag.getPostNo().getPostNo())
+                .boardCd(pTag.getBoardCd().getBoardCd())
+                .tagNo(pTag.getTagNo().getTagNo())
+                .build();
     }
 
 }

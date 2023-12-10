@@ -6,6 +6,8 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "POST")
@@ -41,5 +43,14 @@ public class Post {
     @CreatedDate
     @Column(name = "REG_DT", updatable = true)
     private LocalDateTime regDt; // 작성일시
+
+    @OneToMany(mappedBy = "postNo", cascade = CascadeType.ALL)
+    private List<PostTag> postTags = new ArrayList<>();
+
+    public void addPostTag(PostTag postTag) {
+//        System.out.println("postTags = " + postTags);
+        this.postTags.add(postTag);
+        postTag.setPostNo(this);
+    }
 
 }

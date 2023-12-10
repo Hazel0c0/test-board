@@ -2,9 +2,7 @@ package com.example.test.domain.tag.service;
 
 import com.example.test.domain.board.model.BoardDef;
 import com.example.test.domain.board.service.BoardDefService;
-import com.example.test.domain.board.service.BoardService;
-import com.example.test.domain.tag.controller.dto.response.PostTagResponseDTO;
-import com.example.test.domain.tag.model.Tag;
+import com.example.test.domain.board.model.Tag;
 import com.example.test.domain.tag.repository.TagRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

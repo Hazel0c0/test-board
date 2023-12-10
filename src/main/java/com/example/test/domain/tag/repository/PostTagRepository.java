@@ -1,6 +1,6 @@
 package com.example.test.domain.tag.repository;
 
-import com.example.test.domain.tag.model.PostTag;
+import com.example.test.domain.board.model.PostTag;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 

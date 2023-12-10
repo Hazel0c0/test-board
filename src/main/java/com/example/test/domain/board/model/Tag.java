@@ -1,4 +1,4 @@
-package com.example.test.domain.tag.model;
+package com.example.test.domain.board.model;
 
 import com.example.test.domain.board.model.BoardDef;
 import com.example.test.domain.board.repository.BoardDefRepository;
