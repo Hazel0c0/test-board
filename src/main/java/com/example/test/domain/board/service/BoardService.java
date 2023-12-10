@@ -40,7 +40,6 @@ public class BoardService {
         post.setPostTags(new ArrayList<>());
         log.info(COMMON_LOG + "saved post dto - {}", post);
 
-
         List<String> tagName = postRequestDTO.getTagName();
         if (!tagName.isEmpty()) {
             BoardDef boardDef = BoardDefService.boardDefFrom(postRequestDTO.getBoardCd());

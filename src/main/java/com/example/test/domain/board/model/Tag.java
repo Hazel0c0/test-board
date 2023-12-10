@@ -1,8 +1,6 @@
 package com.example.test.domain.board.model;
 
-import com.example.test.domain.board.model.BoardDef;
-import com.example.test.domain.board.repository.BoardDefRepository;
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.*;
 
 @Entity

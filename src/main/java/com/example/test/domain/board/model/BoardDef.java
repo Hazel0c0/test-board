@@ -1,7 +1,6 @@
 package com.example.test.domain.board.model;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.*;
 
 @Entity

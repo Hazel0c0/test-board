@@ -16,7 +16,7 @@ import java.util.Map;
 @Slf4j
 public class BoardDefController {
     private final BoardDefService boardDefService;
-    String COMMON_LOG = "api/board-tag Controller : ";
+    String COMMON_LOG = "api/board-def Controller : ";
 
     /**
      * board def create

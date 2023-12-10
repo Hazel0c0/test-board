@@ -1,6 +1,6 @@
 package com.example.test.domain.board.model;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -47,8 +47,6 @@ public class Post {
     @Setter
     @OneToMany(mappedBy = "postNo", cascade = CascadeType.ALL)
     private List<PostTag> postTags = new ArrayList<>();
-
-
 
     public void addPostTag(PostTag postTag) {
         System.out.println("postTags = " + postTags);
