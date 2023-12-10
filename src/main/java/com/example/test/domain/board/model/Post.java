@@ -1,6 +1,8 @@
 package com.example.test.domain.board.model;
 
 import javax.persistence.*;
+
+import com.example.test.domain.tag.model.PostTag;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;

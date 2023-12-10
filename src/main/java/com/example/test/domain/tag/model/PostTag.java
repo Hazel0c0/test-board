@@ -1,6 +1,9 @@
-package com.example.test.domain.board.model;
+package com.example.test.domain.tag.model;
 
 import javax.persistence.*;
+
+import com.example.test.domain.board.model.BoardDef;
+import com.example.test.domain.board.model.Post;
 import lombok.*;
 
 @Entity

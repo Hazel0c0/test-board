@@ -5,8 +5,8 @@ import com.example.test.domain.board.controller.dto.request.UpdatePostRequestDTO
 import com.example.test.domain.board.controller.dto.response.PostResponseDTO;
 import com.example.test.domain.board.model.BoardDef;
 import com.example.test.domain.board.model.Post;
-import com.example.test.domain.board.model.PostTag;
-import com.example.test.domain.board.model.Tag;
+import com.example.test.domain.tag.model.PostTag;
+import com.example.test.domain.tag.model.Tag;
 import com.example.test.domain.board.repository.BoardDefRepository;
 import com.example.test.domain.board.repository.PostRepository;
 import com.example.test.domain.tag.repository.PostTagRepository;

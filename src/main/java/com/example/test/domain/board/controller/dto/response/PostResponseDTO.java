@@ -1,7 +1,7 @@
 package com.example.test.domain.board.controller.dto.response;
 
 import com.example.test.domain.board.model.Post;
-import com.example.test.domain.board.model.Tag;
+import com.example.test.domain.tag.model.Tag;
 import lombok.*;
 
 import java.time.format.DateTimeFormatter;
