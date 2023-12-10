@@ -27,7 +27,7 @@ public class PostResponseDTO {
     public static PostResponseDTO from(Post post) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
-        List<Tag> tags = post.getPostTags().stream().map(pt -> pt.getTagNo()).collect(Collectors.toList());
+        List<Tag> tags = post.getPostTags().stream().map(pt -> pt.getTagNo()).toList();
 
         return PostResponseDTO.builder()
                 .postNo(post.getPostNo())

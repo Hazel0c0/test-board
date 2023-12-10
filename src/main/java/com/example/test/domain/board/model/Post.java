@@ -15,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
-@ToString
+@ToString(exclude = {"postTags"})
 @Getter
 @EntityListeners(AuditingEntityListener.class)
 public class Post {
@@ -44,13 +44,16 @@ public class Post {
     @Column(name = "REG_DT", updatable = true)
     private LocalDateTime regDt; // 작성일시
 
+    @Setter
     @OneToMany(mappedBy = "postNo", cascade = CascadeType.ALL)
     private List<PostTag> postTags = new ArrayList<>();
 
+
+
     public void addPostTag(PostTag postTag) {
-//        System.out.println("postTags = " + postTags);
-        this.postTags.add(postTag);
+        System.out.println("postTags = " + postTags);
         postTag.setPostNo(this);
+        this.postTags.add(postTag);
     }
 
 }

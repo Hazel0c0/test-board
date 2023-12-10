@@ -17,6 +17,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
@@ -36,6 +37,7 @@ public class BoardService {
     @Transactional
     public PostResponseDTO insertPost(CreatePostRequestDTO postRequestDTO) {
         Post post = postRepository.save(dtoToEntity(postRequestDTO));
+        post.setPostTags(new ArrayList<>());
         log.info(COMMON_LOG + "saved post dto - {}", post);
 
 
@@ -60,7 +62,6 @@ public class BoardService {
 
             }
         }
-
         return PostResponseDTO.from(post);
     }
 
