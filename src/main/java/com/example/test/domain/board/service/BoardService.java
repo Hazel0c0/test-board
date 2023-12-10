@@ -40,27 +40,7 @@ public class BoardService {
         post.setPostTags(new ArrayList<>());
         log.info(COMMON_LOG + "saved post dto - {}", post);
 
-        List<String> tagName = postRequestDTO.getTagName();
-        if (!tagName.isEmpty()) {
-            BoardDef boardDef = BoardDefService.boardDefFrom(postRequestDTO.getBoardCd());
-            for (String tag : tagName) {
-                Tag tagEntity = Tag.builder()
-                        .tag(tag)
-                        .boardCd(boardDef)
-                        .build();
-                tagRepository.save(tagEntity);
-
-                PostTag po = PostTag.builder()
-                        .tagNo(tagEntity)
-                        .boardCd(boardDef)
-                        .postNo(post)
-                        .build();
-
-                postTagRepository.save(po);
-                post.addPostTag(po);
-
-            }
-        }
+        tagSave(postRequestDTO, post);
         return PostResponseDTO.from(post);
     }
 
@@ -75,6 +55,40 @@ public class BoardService {
                 .regstrId(dto.getRegstrId())
                 .build();
     }
+
+    private void tagSave(CreatePostRequestDTO postRequestDTO, Post post) {
+        List<String> tagName = postRequestDTO.getTagName();
+        if (!tagName.isEmpty()) {
+            BoardDef boardDef = BoardDefService.boardDefFrom(postRequestDTO.getBoardCd());
+            for (String tag : tagName) {
+
+                // 1. 태그 조회해서 중복인지 확인
+                int flagNum = tagRepository.countByTag(tag); // 조회되면 1 -> 중복  //안되면 0
+
+                Tag tagEntity;
+
+                if (flagNum == 0) {
+                    tagEntity = Tag.builder()
+                            .tag(tag)
+                            .boardCd(boardDef)
+                            .build();
+                    tagRepository.save(tagEntity);
+                } else {
+                    tagEntity = tagRepository.findByTag(tag).orElseThrow();
+                }
+
+                PostTag po = PostTag.builder()
+                        .tagNo(tagEntity)
+                        .boardCd(boardDef)
+                        .postNo(post)
+                        .build();
+
+                postTagRepository.save(po);
+                post.addPostTag(po);
+            }
+        }
+    }
+
 
     // 수정
     public PostResponseDTO update(Long postNo, UpdatePostRequestDTO updatedPostDto) {
