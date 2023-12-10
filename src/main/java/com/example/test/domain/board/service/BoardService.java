@@ -1,6 +1,6 @@
 package com.example.test.domain.board.service;
 
-import com.example.test.domain.board.controller.dto.request.createPostRequestDTO;
+import com.example.test.domain.board.controller.dto.request.CreatePostRequestDTO;
 import com.example.test.domain.board.controller.dto.request.UpdatePostRequestDTO;
 import com.example.test.domain.board.controller.dto.response.PostResponseDTO;
 import com.example.test.domain.board.model.BoardDef;
@@ -26,14 +26,14 @@ public class BoardService {
     String COMMON_LOG = "api/board Service : ";
 
     // 저장
-    public PostResponseDTO insertPost(createPostRequestDTO postRequestDTO) {
+    public PostResponseDTO insertPost(CreatePostRequestDTO postRequestDTO) {
         Post post = postRepository.save(dtoToEntity(postRequestDTO));
         log.info(COMMON_LOG + "saved post dto - {}", post);
 
         return PostResponseDTO.from(post);
     }
 
-    private Post dtoToEntity(createPostRequestDTO dto) {
+    private Post dtoToEntity(CreatePostRequestDTO dto) {
         BoardDef boardDef = BoardDefService.boardDefFrom(dto.getBoardCd());
         log.debug(COMMON_LOG+"dtoToEntity boardDef - {} ", boardDef);
 

@@ -12,6 +12,7 @@ import lombok.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode
 public class Tag {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

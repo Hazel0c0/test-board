@@ -8,8 +8,10 @@ import lombok.*;
 @Table(name = "BOARD_DEF")
 @ToString
 @Getter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode
 public class BoardDef {
     @Id
     @Column(name = "BOARD_CD")

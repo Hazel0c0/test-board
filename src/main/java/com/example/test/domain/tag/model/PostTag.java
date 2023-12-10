@@ -12,6 +12,7 @@ import lombok.*;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode
 public class PostTag {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

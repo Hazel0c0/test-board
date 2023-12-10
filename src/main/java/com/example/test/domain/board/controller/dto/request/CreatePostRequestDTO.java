@@ -7,7 +7,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
-public class createPostRequestDTO {
+public class CreatePostRequestDTO {
     private String boardCd;
 
     private String postSj;

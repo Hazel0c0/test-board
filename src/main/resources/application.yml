@@ -5,9 +5,9 @@ spring:
   main:
     allow-bean-definition-overriding: true
   datasource:
-    url: jdbc:mariadb://localhost:3306/test
+    url: jdbc:mariadb://localhost:3307/test_board
     username: root
-    password: 1234
+    password: root
   jpa:
     database-platform: org.hibernate.dialect.MariaDB106Dialect
     hibernate:
