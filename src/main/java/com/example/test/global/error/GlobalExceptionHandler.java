@@ -14,15 +14,11 @@ import java.util.NoSuchElementException;
 public class GlobalExceptionHandler {
     @ExceptionHandler(NoSuchElementException.class)
     public ResponseEntity<String> handleNoSuchElementException(NoSuchElementException e) {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("게시글을 찾을 수 없습니다.");
+        String msg = e.getMessage()!=null? "의 "+e.getMessage(): "";
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+            .body("해당 번호"+msg+"을(를) 찾을 수 없습니다.");
     }
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<String> handleValidationExceptions(MethodArgumentNotValidException ex) {
-        return ResponseEntity.badRequest().body("유효성 검사 실패: "
-            + ex.getBindingResult()
-            .getFieldError()
-            .getDefaultMessage());
-    }
+
     @ExceptionHandler(Exception.class)
     public ResponseEntity<?> handleOtherExceptions(Exception e) {
         log.warn("기타 예외가 발생했습니다. - {}", e.getMessage());
