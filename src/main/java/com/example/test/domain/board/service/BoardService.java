@@ -1,15 +1,13 @@
 package com.example.test.domain.board.service;
 
-import com.example.test.domain.board.controller.dto.request.createRequestDTO;
-import com.example.test.domain.board.controller.dto.request.UpdateRequestDTO;
+import com.example.test.domain.board.controller.dto.request.createPostRequestDTO;
+import com.example.test.domain.board.controller.dto.request.UpdatePostRequestDTO;
 import com.example.test.domain.board.controller.dto.response.PostResponseDTO;
 import com.example.test.domain.board.model.BoardDef;
 import com.example.test.domain.board.model.Post;
 import com.example.test.domain.board.repository.BoardDefRepository;
 import com.example.test.domain.board.repository.PostRepository;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
@@ -21,8 +19,6 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-@ToString
-@Getter
 public class BoardService {
     private final BoardDefRepository boardDefRepository;
     private final PostRepository postRepository;
@@ -30,15 +26,15 @@ public class BoardService {
     String COMMON_LOG = "api/board Service : ";
 
     // 저장
-    public PostResponseDTO insertPost(createRequestDTO postRequestDTO) {
+    public PostResponseDTO insertPost(createPostRequestDTO postRequestDTO) {
         Post post = postRepository.save(dtoToEntity(postRequestDTO));
         log.info(COMMON_LOG + "saved post dto - {}", post);
 
         return PostResponseDTO.from(post);
     }
 
-    private Post dtoToEntity(createRequestDTO dto) {
-        BoardDef byBoardCd = boardDefRepository.findByBoardCd(dto.getBoardCd());
+    private Post dtoToEntity(createPostRequestDTO dto) {
+        BoardDef byBoardCd = boardDefRepository.findById(dto.getBoardCd()).orElseThrow();
 
         return Post.builder()
             .boardCd(byBoardCd)
@@ -49,13 +45,13 @@ public class BoardService {
     }
 
     // 수정
-    public PostResponseDTO update(Long postNo, UpdateRequestDTO updatedPostDto) {
+    public PostResponseDTO update(Long postNo, UpdatePostRequestDTO updatedPostDto) {
         Post foundPost = returnPost(postNo);
         setPost(foundPost,updatedPostDto);
 
         return PostResponseDTO.from(foundPost);
     }
-    private void setPost(Post p, UpdateRequestDTO dto){
+    private void setPost(Post p, UpdatePostRequestDTO dto){
         p.setPostSj(dto.getPostSj());
         p.setPostCn(dto.getPostCn());
 
@@ -68,6 +64,7 @@ public class BoardService {
             postRepository.deleteById(postId);
             return true;
         } catch (EmptyResultDataAccessException e) {
+            log.warn("삭제에 실패했습니다.");
             return false;
         }
     }
@@ -85,8 +82,8 @@ public class BoardService {
         return PostResponseDTO.from(returnPost(postId));
     }
 
-    private Post returnPost(Long postNo) {
+    public Post returnPost(Long postNo) {
         return postRepository.findById(postNo)
-            .orElseThrow(NoSuchElementException::new);
+            .orElseThrow(() -> new NoSuchElementException("게시물"));
     }
 }
