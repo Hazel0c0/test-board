@@ -9,6 +9,7 @@ import java.time.format.DateTimeFormatter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@ToString
 public class PostResponseDTO {
     private Long postNo;
     private String boardCd;

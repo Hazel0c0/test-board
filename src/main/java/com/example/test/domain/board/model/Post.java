@@ -1,6 +1,5 @@
 package com.example.test.domain.board.model;
 
-import com.example.test.domain.board.controller.dto.request.UpdateRequestDTO;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;

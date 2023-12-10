@@ -10,7 +10,6 @@ import lombok.*;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode
 public class BoardDef {
     @Id
     @Column(name = "BOARD_CD")
