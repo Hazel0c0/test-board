@@ -2,17 +2,14 @@ package com.example.test.domain.board.controller.dto.request;
 
 import lombok.*;
 
+
 @ToString
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
-public class createRequestDTO {
-    private String boardCd;
-
+public class UpdatePostRequestDTO {
     private String postSj;
 
     private String postCn;
-
-    private String regstrId;
 }

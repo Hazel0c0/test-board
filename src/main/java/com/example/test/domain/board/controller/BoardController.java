@@ -1,7 +1,7 @@
 package com.example.test.domain.board.controller;
 
-import com.example.test.domain.board.controller.dto.request.createRequestDTO;
-import com.example.test.domain.board.controller.dto.request.UpdateRequestDTO;
+import com.example.test.domain.board.controller.dto.request.createPostRequestDTO;
+import com.example.test.domain.board.controller.dto.request.UpdatePostRequestDTO;
 import com.example.test.domain.board.controller.dto.response.PostResponseDTO;
 import com.example.test.domain.board.service.BoardService;
 import lombok.RequiredArgsConstructor;
@@ -27,7 +27,7 @@ public class BoardController {
      * @param postRequestDTO : 게시판 코드, 제목, 내용, 작성자
      */
     @PostMapping
-    public ResponseEntity<PostResponseDTO> createPost(@Validated @RequestBody final createRequestDTO postRequestDTO) {
+    public ResponseEntity<PostResponseDTO> createPost(@Validated @RequestBody final createPostRequestDTO postRequestDTO) {
         log.info(COMMON_LOG + "create post dto - {}", postRequestDTO);
 
         PostResponseDTO postResponseDTO = boardService.insertPost(postRequestDTO);
@@ -43,7 +43,7 @@ public class BoardController {
     @PutMapping("/{postNo}")
     public ResponseEntity<PostResponseDTO> updatePost(
         @PathVariable final Long postNo,
-        @Validated @RequestBody final UpdateRequestDTO updatedPostDto) {
+        @Validated @RequestBody final UpdatePostRequestDTO updatedPostDto) {
         log.info(COMMON_LOG + "update post number - {} / dto - {}", postNo, updatedPostDto);
 
         PostResponseDTO updateResponseDTO = boardService.update(postNo, updatedPostDto);
