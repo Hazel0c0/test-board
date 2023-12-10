@@ -34,10 +34,11 @@ public class BoardService {
     }
 
     private Post dtoToEntity(createPostRequestDTO dto) {
-        BoardDef byBoardCd = boardDefRepository.findById(dto.getBoardCd()).orElseThrow();
+        BoardDef boardDef = BoardDefService.boardDefFrom(dto.getBoardCd());
+        log.debug(COMMON_LOG+"dtoToEntity boardDef - {} ", boardDef);
 
         return Post.builder()
-            .boardCd(byBoardCd)
+            .boardCd(boardDef)
             .postSj(dto.getPostSj())
             .postCn(dto.getPostCn())
             .regstrId(dto.getRegstrId())

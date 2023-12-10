@@ -1,6 +1,7 @@
 package com.example.test.domain.tag.model;
 
 import com.example.test.domain.board.model.BoardDef;
+import com.example.test.domain.board.repository.BoardDefRepository;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -8,6 +9,9 @@ import lombok.*;
 @Table(name = "TAG")
 @ToString
 @Getter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Tag {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
