@@ -8,6 +8,7 @@ import java.util.Optional;
 
 public interface TagRepository extends JpaRepository<Tag, Long> {
 
+    // tag entity에 일치하는 'tag' 몇 개인지
     int countByTag(String tag);
     Optional<Tag> findByTag(String tag);
 }
