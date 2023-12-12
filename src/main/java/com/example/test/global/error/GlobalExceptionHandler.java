@@ -14,9 +14,9 @@ import java.util.NoSuchElementException;
 public class GlobalExceptionHandler {
     @ExceptionHandler(NoSuchElementException.class)
     public ResponseEntity<String> handleNoSuchElementException(NoSuchElementException e) {
-        String msg = e.getMessage()!=null? "의 "+e.getMessage(): "";
+        String found = e.getMessage()!=null? "의 "+e.getMessage(): "";
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
-            .body("해당 번호"+msg+"을(를) 찾을 수 없습니다.");
+            .body("해당 번호"+found+"을(를) 찾을 수 없습니다.");
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)

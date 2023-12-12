@@ -63,17 +63,19 @@ public class BoardService {
             for (String tag : tagName) {
 
                 // 1. 태그 조회해서 중복인지 확인
-                int flagNum = tagRepository.countByTag(tag); // 조회되면 1 -> 중복  //안되면 0
+                int flagNum = tagRepository.countByTag(tag);
 
                 Tag tagEntity;
 
                 if (flagNum == 0) {
+                    // 중복아니라면 0 - Tag 생성
                     tagEntity = Tag.builder()
                             .tag(tag)
                             .boardCd(boardDef)
                             .build();
                     tagRepository.save(tagEntity);
                 } else {
+                    // 중복이라면 1 - repo에서 찾아서 게시글에 담아주기
                     tagEntity = tagRepository.findByTag(tag).orElseThrow();
                 }
 
